@@ -22,7 +22,6 @@ Group: System/Internationalization
 Source: http://download.sf.linuxforum.net/cmpp/%fname-%version.tar.bz2
 Source1: makewhatis.%{LANG}_CN.UTF-8.bz2
 Source2: makewhatis.%{LANG}_CN.bz2
-Buildroot: %_tmppath/%{name}
 BuildRequires: man => 1.5j-8mdk
 Requires: locales-%{LANG}, man => 1.5j-8mdk
 Autoreq: false
