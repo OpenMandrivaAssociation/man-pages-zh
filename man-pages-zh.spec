@@ -1,7 +1,7 @@
 %define LANG zh
 %define name man-pages-%{LANG}
 %define version 1.5
-%define release %mkrel 8
+%define release %mkrel 9
 
 %define fname man-pages-zh_CN
 
