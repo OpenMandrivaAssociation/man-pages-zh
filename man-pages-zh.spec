@@ -1,7 +1,7 @@
 %define LANG zh
 %define name man-pages-%{LANG}
 %define version 1.5
-%define release %mkrel 9
+%define release %mkrel 10
 
 %define fname man-pages-zh_CN
 
@@ -39,7 +39,7 @@ Set of man pages translated into Chinese language
 %make u8
 %make gb
 # fix conflict with mplayer:
-rm -f */man1/mplayer.1
+rm -f */man1/{mplayer,mencoder}.1
 
 %install
 rm -rf $RPM_BUILD_ROOT
