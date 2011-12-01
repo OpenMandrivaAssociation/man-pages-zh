@@ -42,35 +42,35 @@ Set of man pages translated into Chinese language
 rm -f */man1/{mplayer,mencoder}.1
 
 %install
-rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT/etc
-make DESTDIR=$RPM_BUILD_ROOT%{_usr}/share install-u8
-make DESTDIR=$RPM_BUILD_ROOT%{_usr}/share install-gb CONFDIR=$RPM_BUILD_ROOT/etc
+rm -rf %{buildroot}
+mkdir -p %{buildroot}/etc
+make DESTDIR=%{buildroot}%{_usr}/share install-u8
+make DESTDIR=%{buildroot}%{_usr}/share install-gb CONFDIR=%{buildroot}/etc
 
-mkdir -p $RPM_BUILD_ROOT/usr/sbin
-bzcat %SOURCE1 > $RPM_BUILD_ROOT/usr/sbin/makewhatis.%{LANG}_CN.UTF-8
-chmod a+rx $RPM_BUILD_ROOT/usr/sbin/makewhatis.%{LANG}_CN.UTF-8
-bzcat %SOURCE2 > $RPM_BUILD_ROOT/usr/sbin/makewhatis.%{LANG}_CN
-chmod a+rx $RPM_BUILD_ROOT/usr/sbin/makewhatis.%{LANG}_CN
+mkdir -p %{buildroot}/usr/sbin
+bzcat %SOURCE1 > %{buildroot}/usr/sbin/makewhatis.%{LANG}_CN.UTF-8
+chmod a+rx %{buildroot}/usr/sbin/makewhatis.%{LANG}_CN.UTF-8
+bzcat %SOURCE2 > %{buildroot}/usr/sbin/makewhatis.%{LANG}_CN
+chmod a+rx %{buildroot}/usr/sbin/makewhatis.%{LANG}_CN
 
-$RPM_BUILD_ROOT/usr/sbin/makewhatis.%{LANG}_CN.UTF-8 \
-        $RPM_BUILD_ROOT/%{_mandir}/%{LANG}_CN.UTF-8
-$RPM_BUILD_ROOT/usr/sbin/makewhatis.%{LANG}_CN \
-        $RPM_BUILD_ROOT/%{_mandir}/%{LANG}_CN
+%{buildroot}/usr/sbin/makewhatis.%{LANG}_CN.UTF-8 \
+        %{buildroot}/%{_mandir}/%{LANG}_CN.UTF-8
+%{buildroot}/usr/sbin/makewhatis.%{LANG}_CN \
+        %{buildroot}/%{_mandir}/%{LANG}_CN
 
-mkdir -p $RPM_BUILD_ROOT/etc/cron.weekly
-cat > $RPM_BUILD_ROOT/etc/cron.weekly/makewhatis-%{LANG}_CN.UTF-8.cron << EOF
+mkdir -p %{buildroot}/etc/cron.weekly
+cat > %{buildroot}/etc/cron.weekly/makewhatis-%{LANG}_CN.UTF-8.cron << EOF
 #!/bin/bash
 /usr/sbin/makewhatis.%{LANG}_CN.UTF-8 %{_mandir}/%{LANG}_CN.UTF-8
 exit 0
 EOF
-chmod a+x $RPM_BUILD_ROOT/etc/cron.weekly/makewhatis-%{LANG}_CN.UTF-8.cron
-cat > $RPM_BUILD_ROOT/etc/cron.weekly/makewhatis-%{LANG}_CN.cron << EOF
+chmod a+x %{buildroot}/etc/cron.weekly/makewhatis-%{LANG}_CN.UTF-8.cron
+cat > %{buildroot}/etc/cron.weekly/makewhatis-%{LANG}_CN.cron << EOF
 #!/bin/bash
 /usr/sbin/makewhatis.%{LANG}_CN %{_mandir}/%{LANG}_CN
 exit 0
 EOF
-chmod a+x $RPM_BUILD_ROOT/etc/cron.weekly/makewhatis-%{LANG}_CN.cron
+chmod a+x %{buildroot}/etc/cron.weekly/makewhatis-%{LANG}_CN.cron
 
 %post
 /etc/cron.weekly/makewhatis-%{LANG}_CN.UTF-8.cron
@@ -79,7 +79,7 @@ touch %{_mandir}/%{LANG}_CN.UTF-8/whatis
 touch %{_mandir}/%{LANG}_CN/whatis
 
 %clean
-rm -r $RPM_BUILD_ROOT
+rm -r %{buildroot}
 
 %files
 %defattr(0644,root,man,755)
