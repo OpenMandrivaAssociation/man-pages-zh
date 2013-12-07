@@ -12,7 +12,7 @@
 Summary:	Chinese Man Pages
 Name:		man-pages-%{LANG}
 Version:	1.5
-Release:	15
+Release:	16
 License:	FDL
 Group:		System/Internationalization
 Source0:	http://download.sf.linuxforum.net/cmpp/%{fname}-%{version}.tar.bz2
