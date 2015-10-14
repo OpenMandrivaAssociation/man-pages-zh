@@ -12,7 +12,7 @@
 Summary:	Chinese Man Pages
 Name:		man-pages-%{LANG}
 Version:	1.5
-Release:	20
+Release:	21
 License:	FDL
 Group:		System/Internationalization
 Source0:	http://download.sf.linuxforum.net/cmpp/%{fname}-%{version}.tar.bz2
@@ -24,6 +24,7 @@ Requires:	locales-%{LANG}
 Requires:	man
 Requires:	locales-%{LANG}
 Autoreq:	false
+Conflicts:	filesystem < 3.0-17
 
 %description
 Set of man pages translated into Chinese language
@@ -72,11 +73,11 @@ touch %{_mandir}/%{LANG}_CN.UTF-8/whatis
 touch %{_mandir}/%{LANG}_CN/whatis
 
 %files
-%{_mandir}/%{LANG}_CN.UTF-8
+%{_mandir}/%{LANG}_CN.UTF-8/*
 %attr(755,root,root)/usr/sbin/makewhatis.%{LANG}_CN.UTF-8
 %config(noreplace) %attr(755,root,root)/etc/cron.weekly/makewhatis-%{LANG}_CN.UTF-8.cron
 #
-%{_mandir}/%{LANG}_CN
+%{_mandir}/%{LANG}_CN/*
 %attr(755,root,root)/usr/sbin/makewhatis.%{LANG}_CN
 %config(noreplace) %attr(755,root,root)/etc/cron.weekly/makewhatis-%{LANG}_CN.cron
 %{_sysconfdir}/cman.conf
